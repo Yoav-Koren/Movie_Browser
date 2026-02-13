@@ -1,4 +1,3 @@
-import 'package:dio/src/response.dart';
 import 'package:dio/dio.dart';
 import 'package:movie_browser/consts/const_strings.dart';
 import 'package:movie_browser/domain/interfaces/interface_http_manager.dart';

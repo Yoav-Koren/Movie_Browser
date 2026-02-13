@@ -1,5 +1,5 @@
 class ConstString {
-  static String apiURL = "https://www.omdbapi.com";
-  static String apiSearchByTitleHeader = "/?t=";
-  static String apiKeyHeader = "&apikey=";
+  static const String apiURL = "https://www.omdbapi.com";
+  static const String apiSearchByTitleHeader = "/?t=";
+  static const String apiKeyHeader = "&apikey=";
 }
