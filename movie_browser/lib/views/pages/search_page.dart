@@ -3,6 +3,7 @@ import 'package:movie_browser/consts/const_nums.dart';
 import 'package:movie_browser/views/pages/favorites_page.dart';
 import 'package:movie_browser/views/widgets/custom_bottom_navigation_bar.dart';
 import 'package:movie_browser/views/widgets/pagination_widget.dart';
+import 'package:movie_browser/views/widgets/search_bar.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
@@ -29,46 +30,7 @@ class SearchPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Row(
               children: [
-                Expanded(
-                  child: Container(
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.grey[800],
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Material(
-                        child: const TextField(
-                          style: TextStyle(color: Colors.white),
-                          decoration: InputDecoration(
-                            hintText: 'Search movies...',
-                            hintStyle: TextStyle(color: Colors.grey),
-                            border: InputBorder.none,
-                            contentPadding: EdgeInsets.symmetric(
-                              horizontal: 16,
-                              vertical: 14,
-                            ),
-                          ),
-                        ),
-                      )),
-                ),
-                const SizedBox(width: 10),
-
-                // Search Button
-                Container(
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: Colors.redAccent,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: IconButton(
-                    onPressed: () {
-                      // Trigger search
-                    },
-                    icon: const Icon(Icons.search, color: Colors.white),
-                  ),
-                ),
-
-                const SizedBox(width: 8),
+                CustomSearchBar(),
 
                 // History Button
                 Container(

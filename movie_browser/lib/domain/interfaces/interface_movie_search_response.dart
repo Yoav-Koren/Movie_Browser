@@ -5,8 +5,10 @@ import 'package:movie_browser/domain/interfaces/interface_movie_rating.dart';
 
 abstract class IMovieSearchResponse {
   String get title;
-  DateTime get releaseDate;
-  Rating get rating;
+  String get year;
+  String get releaseDate;
+  String get runtime;
+  String get rating;
   String get genre;
   String get director;
   String get writers;
@@ -16,7 +18,7 @@ abstract class IMovieSearchResponse {
   String get country;
   String get awards;
   String get posterURL;
-  Image get poster;
+  Image? get poster;
   List<IMovieRatings> get ratings;
   int get metascore;
   double get imdbRating;

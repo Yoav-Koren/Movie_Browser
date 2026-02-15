@@ -1,6 +1,9 @@
 part of 'splash_screen_bloc.dart';
 
 @immutable
-sealed class SplashScreenState {}
+class SplashScreenState extends Equatable {
+  @override
+  List<Object?> get props => [];
+}
 
-final class SplashScreenInitial extends SplashScreenState {}
+class SplashScreenInitial extends SplashScreenState {}

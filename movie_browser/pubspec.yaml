@@ -21,6 +21,8 @@ dev_dependencies:
   dio: ^5.9.1
   flutter_bloc: ^9.1.1
   equatable: ^2.0.8
+  auto_injector: ^2.1.1
+  event_bus: ^2.0.1
   
 
 flutter:

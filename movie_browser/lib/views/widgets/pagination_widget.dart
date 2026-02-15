@@ -17,10 +17,6 @@ class PaginationWidget extends StatelessWidget {
             },
             icon: const Icon(Icons.arrow_back, color: Colors.white),
           ),
-          const Text(
-            "Page 1 of 5",
-            style: TextStyle(color: Colors.white),
-          ),
           IconButton(
             onPressed: () {
               // Next page logic

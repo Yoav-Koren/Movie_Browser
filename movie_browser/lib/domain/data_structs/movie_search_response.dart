@@ -6,8 +6,10 @@ import 'package:movie_browser/domain/interfaces/interface_movie_search_response.
 
 class MovieSearchResponse implements IMovieSearchResponse {
   final String _title;
-  final DateTime _releaseDate;
-  final Rating _rating;
+  final String _year;
+  final String _releaseDate;
+  final String _runtime;
+  final String _rating;
   final String _genre;
   final String _director;
   final String _writers;
@@ -17,7 +19,6 @@ class MovieSearchResponse implements IMovieSearchResponse {
   final String _country;
   final String _awards;
   final String _posterURL;
-  final Image _poster;
   final List<IMovieRatings> _ratings;
   final int _metascore;
   final double _imdbRating;
@@ -28,31 +29,58 @@ class MovieSearchResponse implements IMovieSearchResponse {
   final String _boxOffice;
   final String _production;
   final String _websiteURL;
-
+  Image? _poster;
   MovieSearchResponse(
-      this._title,
-      this._releaseDate,
-      this._rating,
-      this._genre,
-      this._director,
-      this._writers,
-      this._actors,
-      this._plot,
-      this._language,
-      this._country,
-      this._awards,
-      this._posterURL,
-      this._poster,
-      this._ratings,
-      this._metascore,
-      this._imdbRating,
-      this._imdbVotes,
-      this._imdbID,
-      this._type,
-      this._dvd,
-      this._boxOffice,
-      this._production,
-      this._websiteURL);
+      {required String title,
+      required String year,
+      required String releaseDate,
+      required String runtime,
+      required String rating,
+      required String genre,
+      required String director,
+      required String writers,
+      required String actors,
+      required String plot,
+      required String language,
+      required String country,
+      required String awards,
+      required String posterURL,
+      required List<IMovieRatings> ratings,
+      required int metascore,
+      required double imdbRating,
+      required int imdbVotes,
+      required String imdbID,
+      required MediaType type,
+      required String dvd,
+      required String boxOffice,
+      required String production,
+      required String websiteURL,
+      Image? poster})
+      : _title = title,
+        _year = year,
+        _releaseDate = releaseDate,
+        _runtime = runtime,
+        _rating = rating,
+        _genre = genre,
+        _director = director,
+        _writers = writers,
+        _actors = actors,
+        _plot = plot,
+        _language = language,
+        _country = country,
+        _awards = awards,
+        _posterURL = posterURL,
+        _poster = poster,
+        _ratings = ratings,
+        _metascore = metascore,
+        _imdbRating = imdbRating,
+        _imdbVotes = imdbVotes,
+        _imdbID = imdbID,
+        _type = type,
+        _dvd = dvd,
+        _boxOffice = boxOffice,
+        _production = production,
+        _websiteURL = websiteURL;
 
   @override
   String get actors => _actors;
@@ -91,7 +119,7 @@ class MovieSearchResponse implements IMovieSearchResponse {
   String get plot => _plot;
 
   @override
-  Image get poster => _poster;
+  Image? get poster => _poster;
 
   @override
   String get posterURL => _posterURL;
@@ -100,13 +128,10 @@ class MovieSearchResponse implements IMovieSearchResponse {
   String get production => _production;
 
   @override
-  Rating get rating => _rating;
+  String get rating => _rating;
 
   @override
   List<IMovieRatings> get ratings => _ratings;
-
-  @override
-  DateTime get releaseDate => _releaseDate;
 
   @override
   String get genre => _genre;
@@ -122,4 +147,13 @@ class MovieSearchResponse implements IMovieSearchResponse {
 
   @override
   String get writers => _writers;
+
+  @override
+  String get releaseDate => _releaseDate;
+
+  @override
+  String get runtime => _runtime;
+
+  @override
+  String get year => _year;
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:movie_browser/views/main_scaffold.dart';
 import 'package:movie_browser/views/pages/search_page.dart';
+import 'package:equatable/equatable.dart';
 
 part 'splash_screen_event.dart';
 part 'splash_screen_state.dart';
