@@ -7,5 +7,5 @@ abstract class IHttpManager {
       required String apiKey,
       required String pageHeader,
       int? pageNumber = 1});
-  Future<dynamic> getImageRequest(String url);
+  Future<dynamic> getImageRequest(String imageURL);
 }

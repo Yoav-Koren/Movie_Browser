@@ -6,10 +6,11 @@ import 'package:movie_browser/domain/data_structs/movie_simple_search_response.d
 @immutable
 class SearchByWordEvent extends Equatable {
   final String search;
-  const SearchByWordEvent(this.search);
+  final int? page;
+  const SearchByWordEvent({required this.search, this.page});
 
   @override
-  List<Object?> get props => [search];
+  List<Object?> get props => [search, page];
 }
 
 @immutable
@@ -62,4 +63,13 @@ class MovieFullResultEvents extends Equatable {
 
   @override
   List<Object?> get props => [result];
+}
+
+@immutable
+class UnableToFetchPosterEvents extends Equatable {
+  final String exceptionMessage;
+  const UnableToFetchPosterEvents(this.exceptionMessage);
+
+  @override
+  List<Object?> get props => [exceptionMessage];
 }

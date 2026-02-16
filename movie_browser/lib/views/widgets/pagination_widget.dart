@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_browser/bloc/pagination_control/pagination_control_bloc.dart';
+import 'package:movie_browser/utils/custom_injector.dart';
 
 class PaginationWidget extends StatelessWidget {
   const PaginationWidget({super.key});
@@ -13,13 +16,17 @@ class PaginationWidget extends StatelessWidget {
         children: [
           IconButton(
             onPressed: () {
-              // Previous page logic
+              context
+                  .read<PaginationControlBloc>()
+                  .add(PaginationBackPageEvent());
             },
             icon: const Icon(Icons.arrow_back, color: Colors.white),
           ),
           IconButton(
             onPressed: () {
-              // Next page logic
+              context
+                  .read<PaginationControlBloc>()
+                  .add(PaginationNextPageEvent());
             },
             icon: const Icon(Icons.arrow_forward, color: Colors.white),
           ),

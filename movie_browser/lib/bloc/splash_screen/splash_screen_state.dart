@@ -6,4 +6,5 @@ class SplashScreenState extends Equatable {
   List<Object?> get props => [];
 }
 
+@immutable
 class SplashScreenInitial extends SplashScreenState {}

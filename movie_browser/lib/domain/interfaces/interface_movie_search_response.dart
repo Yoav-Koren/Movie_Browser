@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
 import 'package:movie_browser/consts/const_enums.dart';
 import 'package:movie_browser/domain/interfaces/interface_movie_rating.dart';
 
@@ -18,11 +19,11 @@ abstract class IMovieSearchResponse {
   String get country;
   String get awards;
   String get posterURL;
-  Image? get poster;
+  Widget? get poster;
   List<IMovieRatings> get ratings;
-  int get metascore;
-  double get imdbRating;
-  int get imdbVotes;
+  String get metascore;
+  String get imdbRating;
+  String get imdbVotes;
   String get imdbID;
   MediaType get type;
   String get dvd;

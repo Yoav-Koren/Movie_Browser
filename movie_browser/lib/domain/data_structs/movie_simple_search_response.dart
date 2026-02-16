@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
 import 'package:movie_browser/consts/const_enums.dart';
 import 'package:movie_browser/domain/interfaces/interface_movie_simple_search_response.dart';
 
@@ -9,25 +10,27 @@ class MovieSimpleSearchResponse implements IMovieSimpleSearchResponse {
   final String _imdbID;
   final MediaType _mediaType;
   final String _posterURL;
-  Image? _poster;
+  Widget? _poster;
 
   MovieSimpleSearchResponse(
       {required String title,
       required String year,
       required String imdbID,
       required MediaType mediaType,
-      required String posterURL})
+      required String posterURL,
+      Widget? poster})
       : _title = title,
         _year = year,
         _imdbID = imdbID,
         _mediaType = mediaType,
-        _posterURL = posterURL;
+        _posterURL = posterURL,
+        _poster = poster;
 
   @override
   String get imdbID => _imdbID;
 
   @override
-  Image? get poster => _poster;
+  Widget? get poster => _poster;
 
   @override
   String get posterURL => _posterURL;

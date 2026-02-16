@@ -1,3 +1,6 @@
+import 'dart:typed_data';
+
+import 'package:flutter/material.dart';
 import 'package:movie_browser/consts/const_strings.dart';
 import 'package:movie_browser/domain/data_structs/movie_ratings.dart';
 import 'package:movie_browser/domain/data_structs/movie_search_response.dart';
@@ -29,6 +32,28 @@ class CommunicationRepository implements ICommunicationRepository {
         searchHeader: ConstString.apiSearchByWordHeader,
         searchResult: encodedString,
         pageHeader: ConstString.pageHeader,
+        pageNumber: event.page ?? 1,
+        apiKey: ConstString.apiKey,
+      );
+      if (response is Response<dynamic>) {
+        _compileResponse(response);
+      }
+      if (response is DioException) {
+        _compileFailedResponse(response);
+      }
+      if (response is Exception && response is! DioException) {
+        _eventBus.fire(ConnectionFailedEvent(response.toString()));
+      }
+    });
+
+    _eventBus.on<SearchByTitleEvent>().listen((event) async {
+      String encodedString = Uri.encodeComponent(event.search);
+      var response = await _httpManager.getRequest(
+        ConstString.apiURL,
+        searchHeader: ConstString.apiSearchByTitleHeader,
+        searchResult: encodedString,
+        pageHeader: ConstString.pageHeader,
+        pageNumber: 1,
         apiKey: ConstString.apiKey,
       );
       if (response is Response<dynamic>) {
@@ -54,7 +79,7 @@ class CommunicationRepository implements ICommunicationRepository {
         if (data['Response'] == 'True' && data.containsKey('Search')) {
           _convertResultsToObjects(data);
         }
-        if (data['Response'] == 'True' && data.containsKey('Search')) {
+        if (data['Response'] == 'True' && !data.containsKey('Search')) {
           _convertFullResultToObject(data);
         }
       } else {
@@ -64,12 +89,16 @@ class CommunicationRepository implements ICommunicationRepository {
     }
   }
 
-  void _convertResultsToObjects(Map<String, dynamic> data) {
+  Future<void> _convertResultsToObjects(Map<String, dynamic> data) async {
     var results = data['Search'] as List;
     var listOfResults = <MovieSimpleSearchResponse>[];
     for (var result in results) {
       try {
         result as Map<String, dynamic>;
+        var image = await _fetchPoster(result);
+        if (image! is Image) {
+          image = null;
+        }
         var temp = MovieSimpleSearchResponse(
             title: result['Title'],
             year: result['Year'],
@@ -77,13 +106,31 @@ class CommunicationRepository implements ICommunicationRepository {
             mediaType: MediaType.values.firstWhere((element) =>
                 element.name.toLowerCase() ==
                 result['Type'].toString().toLowerCase()),
-            posterURL: result['Poster']);
+            posterURL: result['Poster'],
+            poster: image ?? image);
         listOfResults.add(temp);
       } catch (e) {
+        print(e);
         _eventBus.fire(ErrorParsingDataEvent());
       }
     }
     _eventBus.fire(MovieResultsEvents(listOfResults));
+  }
+
+  Future<dynamic> _fetchPoster(Map<String, dynamic> result) async {
+    var imageData = await _httpManager.getImageRequest(result['Poster']);
+    var image;
+    if (imageData is Uint8List) {
+      image = Image.memory(
+        imageData,
+        fit: BoxFit.cover,
+      );
+    }
+    if (imageData is Exception) {
+      _eventBus.fire(UnableToFetchPosterEvents(imageData.toString()));
+      image = CircularProgressIndicator(strokeWidth: 2);
+    }
+    return image;
   }
 
   void _compileFailedResponse(DioException response) {
@@ -104,7 +151,7 @@ class CommunicationRepository implements ICommunicationRepository {
     }
   }
 
-  void _convertFullResultToObject(Map<String, dynamic> data) {
+  Future<void> _convertFullResultToObject(Map<String, dynamic> data) async {
     try {
       var ratings = data['Ratings'] as List;
       var listOfRatings = <MovieRatings>[];
@@ -114,13 +161,13 @@ class CommunicationRepository implements ICommunicationRepository {
             MovieRatings(source: rating['Source'], value: rating['Value']);
         listOfRatings.add(tempRating);
       }
-      data as Map<String, dynamic>;
+      var image = await _fetchPoster(data);
       var temp = MovieSearchResponse(
           title: data['Title'],
           year: data['Year'],
           releaseDate: data['Released'],
           runtime: data['Runtime'],
-          rating: data['Rating'],
+          rating: data['Rated'],
           genre: data['Genre'],
           director: data['Director'],
           writers: data['Writer'],
@@ -138,10 +185,11 @@ class CommunicationRepository implements ICommunicationRepository {
           type: MediaType.values.firstWhere((element) =>
               element.name.toLowerCase() ==
               data['Type'].toString().toLowerCase()),
-          dvd: data['DVD'],
+          dvd: data.containsKey('DVD') ? data['DVD'] : "N/A",
           boxOffice: data['BoxOffice'],
           production: data['Production'],
-          websiteURL: data['Website']);
+          websiteURL: data['Website'],
+          poster: image ?? image);
       _eventBus.fire(MovieFullResultEvents(temp));
     } catch (e) {
       _eventBus.fire(ErrorParsingDataEvent());

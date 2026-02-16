@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:movie_browser/domain/data_structs/movie_ratings.dart';
 import 'package:movie_browser/domain/interfaces/interface_movie_rating.dart';
 import 'package:movie_browser/consts/const_enums.dart';
 import 'dart:ui';
@@ -20,16 +22,16 @@ class MovieSearchResponse implements IMovieSearchResponse {
   final String _awards;
   final String _posterURL;
   final List<IMovieRatings> _ratings;
-  final int _metascore;
-  final double _imdbRating;
-  final int _imdbVotes;
+  final String _metascore;
+  final String _imdbRating;
+  final String _imdbVotes;
   final String _imdbID;
   final MediaType _type;
   final String _dvd;
   final String _boxOffice;
   final String _production;
   final String _websiteURL;
-  Image? _poster;
+  Widget? _poster;
   MovieSearchResponse(
       {required String title,
       required String year,
@@ -46,16 +48,16 @@ class MovieSearchResponse implements IMovieSearchResponse {
       required String awards,
       required String posterURL,
       required List<IMovieRatings> ratings,
-      required int metascore,
-      required double imdbRating,
-      required int imdbVotes,
+      required String metascore,
+      required String imdbRating,
+      required String imdbVotes,
       required String imdbID,
       required MediaType type,
       required String dvd,
       required String boxOffice,
       required String production,
       required String websiteURL,
-      Image? poster})
+      Widget? poster})
       : _title = title,
         _year = year,
         _releaseDate = releaseDate,
@@ -104,22 +106,22 @@ class MovieSearchResponse implements IMovieSearchResponse {
   String get imdbID => _imdbID;
 
   @override
-  double get imdbRating => _imdbRating;
+  String get imdbRating => _imdbRating;
 
   @override
-  int get imdbVotes => _imdbVotes;
+  String get imdbVotes => _imdbVotes;
 
   @override
   String get language => _language;
 
   @override
-  int get metascore => _metascore;
+  String get metascore => _metascore;
 
   @override
   String get plot => _plot;
 
   @override
-  Image? get poster => _poster;
+  Widget? get poster => _poster;
 
   @override
   String get posterURL => _posterURL;

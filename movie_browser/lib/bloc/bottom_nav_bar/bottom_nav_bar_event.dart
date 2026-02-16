@@ -8,6 +8,7 @@ abstract class BottomNavBarEvent extends Equatable {
   List<Object> get props => [];
 }
 
+@immutable
 class NavigateToPageEvent extends BottomNavBarEvent {
   final PageRoutings routePage;
   const NavigateToPageEvent(this.routePage);

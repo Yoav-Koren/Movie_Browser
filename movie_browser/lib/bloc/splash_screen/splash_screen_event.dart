@@ -8,6 +8,7 @@ abstract class SplashScreenEvent extends Equatable {
   List<Object> get props => [];
 }
 
+@immutable
 class SplashScreenStartUpEvent extends SplashScreenEvent {
   final BuildContext context;
   const SplashScreenStartUpEvent(this.context);

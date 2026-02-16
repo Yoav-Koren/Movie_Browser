@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:dio/dio.dart';
 import 'package:movie_browser/consts/const_strings.dart';
 import 'package:movie_browser/domain/events/communication_events.dart';
@@ -10,8 +12,19 @@ class HttpManager implements IHttpManager {
   HttpManager();
 
   @override
-  Future<dynamic> getImageRequest(String url) async {
-    return throw UnimplementedError();
+  Future<dynamic> getImageRequest(String imageURL) async {
+    try {
+      final response = await _dio.get(
+        imageURL,
+        options: Options(responseType: ResponseType.bytes),
+      );
+
+      return Uint8List.fromList(response.data);
+    } on DioException catch (e) {
+      return e;
+    } catch (e) {
+      return e;
+    }
   }
 
   @override
