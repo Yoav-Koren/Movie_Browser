@@ -1,16 +1,17 @@
-import 'package:movie_browser/domain/interfaces/interface_movie_rating.dart';
+import 'package:hive/hive.dart';
 
-class MovieRatings implements IMovieRatings {
-  final String _source;
-  final String _value;
+part 'movie_ratings.g.dart';
 
-  MovieRatings({required String source, required String value})
-      : _source = source,
-        _value = value;
+@HiveType(typeId: 1)
+class MovieRatings {
+  @HiveField(0)
+  final String source;
 
-  @override
-  String get source => _source;
+  @HiveField(1)
+  final String value;
 
-  @override
-  String get value => _value;
+  MovieRatings({
+    required this.source,
+    required this.value,
+  });
 }

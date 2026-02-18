@@ -1,27 +1,27 @@
-part of 'search_results_list_view_bloc.dart';
+part of 'search_movie_list_view_bloc.dart';
 
 @immutable
-class SearchResultsListViewState extends Equatable {
+class SearchMovieListViewState extends Equatable {
   @override
   List<Object?> get props => [];
 }
 
 @immutable
-class SearchResultsListViewInitial extends SearchResultsListViewState {
+class SearchResultsListViewInitial extends SearchMovieListViewState {
   @override
   List<Object?> get props => [];
 }
 
 @immutable
-class SearchResultsShowState extends SearchResultsListViewState {
+class MovieShowState extends SearchMovieListViewState {
   final List<MovieSimpleSearchResponse> results;
-  SearchResultsShowState(this.results);
+  MovieShowState(this.results);
   @override
   List<Object?> get props => [results];
 }
 
 @immutable
-class SearchResultsErrorState extends SearchResultsListViewState {
+class SearchResultsErrorState extends SearchMovieListViewState {
   final String error;
   SearchResultsErrorState(this.error);
   @override

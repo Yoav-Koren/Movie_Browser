@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:event_bus/event_bus.dart';
@@ -12,6 +14,8 @@ class PaginationControlBloc
   int _page = 1;
   String _searchTerm = "";
   final EventBus _eventBus;
+  late final StreamSubscription<NewSearchTermEvent>
+      _streamSubscriptionNewSearchTermEvent;
   PaginationControlBloc(this._eventBus) : super(PaginationControlInitial()) {
     on<PaginationControlEvent>((event, emit) {});
     on<PaginationNextPageEvent>((event, emit) {
@@ -30,9 +34,16 @@ class PaginationControlBloc
   }
 
   void _eventBusEventListening() {
-    _eventBus.on<NewSearchTermEvent>().listen((event) {
+    _streamSubscriptionNewSearchTermEvent =
+        _eventBus.on<NewSearchTermEvent>().listen((event) {
       _page = 1;
       _searchTerm = event.search;
     });
+  }
+
+  @override
+  Future<void> close() {
+    _streamSubscriptionNewSearchTermEvent.cancel();
+    return super.close();
   }
 }

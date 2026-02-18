@@ -6,6 +6,7 @@ class MovieCardEvent extends Equatable {
   List<Object?> get props => [];
 }
 
+@immutable
 class MovieCardClickedEvent extends MovieCardEvent {
   final String title;
 

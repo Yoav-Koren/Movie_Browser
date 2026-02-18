@@ -1,161 +1,115 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
-import 'package:movie_browser/domain/data_structs/movie_ratings.dart';
-import 'package:movie_browser/domain/interfaces/interface_movie_rating.dart';
+import 'package:hive/hive.dart';
 import 'package:movie_browser/consts/const_enums.dart';
-import 'dart:ui';
+import 'package:movie_browser/consts/hive_enums/media_type.dart';
+import 'package:movie_browser/domain/data_structs/movie_ratings.dart';
 
-import 'package:movie_browser/domain/interfaces/interface_movie_search_response.dart';
+part 'movie_search_response.g.dart';
 
-class MovieSearchResponse implements IMovieSearchResponse {
-  final String _title;
-  final String _year;
-  final String _releaseDate;
-  final String _runtime;
-  final String _rating;
-  final String _genre;
-  final String _director;
-  final String _writers;
-  final String _actors;
-  final String _plot;
-  final String _language;
-  final String _country;
-  final String _awards;
-  final String _posterURL;
-  final List<IMovieRatings> _ratings;
-  final String _metascore;
-  final String _imdbRating;
-  final String _imdbVotes;
-  final String _imdbID;
-  final MediaType _type;
-  final String _dvd;
-  final String _boxOffice;
-  final String _production;
-  final String _websiteURL;
-  Widget? _poster;
-  MovieSearchResponse(
-      {required String title,
-      required String year,
-      required String releaseDate,
-      required String runtime,
-      required String rating,
-      required String genre,
-      required String director,
-      required String writers,
-      required String actors,
-      required String plot,
-      required String language,
-      required String country,
-      required String awards,
-      required String posterURL,
-      required List<IMovieRatings> ratings,
-      required String metascore,
-      required String imdbRating,
-      required String imdbVotes,
-      required String imdbID,
-      required MediaType type,
-      required String dvd,
-      required String boxOffice,
-      required String production,
-      required String websiteURL,
-      Widget? poster})
-      : _title = title,
-        _year = year,
-        _releaseDate = releaseDate,
-        _runtime = runtime,
-        _rating = rating,
-        _genre = genre,
-        _director = director,
-        _writers = writers,
-        _actors = actors,
-        _plot = plot,
-        _language = language,
-        _country = country,
-        _awards = awards,
-        _posterURL = posterURL,
-        _poster = poster,
-        _ratings = ratings,
-        _metascore = metascore,
-        _imdbRating = imdbRating,
-        _imdbVotes = imdbVotes,
-        _imdbID = imdbID,
-        _type = type,
-        _dvd = dvd,
-        _boxOffice = boxOffice,
-        _production = production,
-        _websiteURL = websiteURL;
+@HiveType(typeId: 0)
+class MovieSearchResponse {
+  @HiveField(0)
+  final String title;
 
-  @override
-  String get actors => _actors;
+  @HiveField(1)
+  final String year;
 
-  @override
-  String get awards => _awards;
+  @HiveField(2)
+  final String releaseDate;
 
-  @override
-  String get boxOffice => _boxOffice;
+  @HiveField(3)
+  final String runtime;
 
-  @override
-  String get country => _country;
+  @HiveField(4)
+  final String rating;
 
-  @override
-  String get director => _director;
+  @HiveField(5)
+  final String genre;
 
-  @override
-  String get dvd => _dvd;
+  @HiveField(6)
+  final String director;
 
-  @override
-  String get imdbID => _imdbID;
+  @HiveField(7)
+  final String writers;
 
-  @override
-  String get imdbRating => _imdbRating;
+  @HiveField(8)
+  final String actors;
 
-  @override
-  String get imdbVotes => _imdbVotes;
+  @HiveField(9)
+  final String plot;
 
-  @override
-  String get language => _language;
+  @HiveField(10)
+  final String language;
 
-  @override
-  String get metascore => _metascore;
+  @HiveField(11)
+  final String country;
 
-  @override
-  String get plot => _plot;
+  @HiveField(12)
+  final String awards;
 
-  @override
-  Widget? get poster => _poster;
+  @HiveField(13)
+  final String posterURL;
 
-  @override
-  String get posterURL => _posterURL;
+  @HiveField(14)
+  final List<MovieRatings> ratings;
 
-  @override
-  String get production => _production;
+  @HiveField(15)
+  final String metascore;
 
-  @override
-  String get rating => _rating;
+  @HiveField(16)
+  final String imdbRating;
 
-  @override
-  List<IMovieRatings> get ratings => _ratings;
+  @HiveField(17)
+  final String imdbVotes;
 
-  @override
-  String get genre => _genre;
+  @HiveField(18)
+  final String imdbID;
 
-  @override
-  String get title => _title;
+  @HiveField(19)
+  final MediaType type;
 
-  @override
-  MediaType get type => _type;
+  @HiveField(20)
+  final String dvd;
 
-  @override
-  String get websiteURL => _websiteURL;
+  @HiveField(21)
+  final String boxOffice;
 
-  @override
-  String get writers => _writers;
+  @HiveField(22)
+  final String production;
 
-  @override
-  String get releaseDate => _releaseDate;
+  @HiveField(23)
+  final String websiteURL;
 
-  @override
-  String get runtime => _runtime;
+  @HiveField(24)
+  bool isFavorite;
 
-  @override
-  String get year => _year;
+  MovieSearchResponse({
+    required this.title,
+    required this.year,
+    required this.releaseDate,
+    required this.runtime,
+    required this.rating,
+    required this.genre,
+    required this.director,
+    required this.writers,
+    required this.actors,
+    required this.plot,
+    required this.language,
+    required this.country,
+    required this.awards,
+    required this.posterURL,
+    required this.ratings,
+    required this.metascore,
+    required this.imdbRating,
+    required this.imdbVotes,
+    required this.imdbID,
+    required this.type,
+    required this.dvd,
+    required this.boxOffice,
+    required this.production,
+    required this.websiteURL,
+    required this.isFavorite,
+  });
 }

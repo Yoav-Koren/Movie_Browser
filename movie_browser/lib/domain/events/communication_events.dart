@@ -32,6 +32,14 @@ class ConnectionFailedEvent extends Equatable {
 }
 
 @immutable
+class ConnectionSuccessfulEvent extends Equatable {
+  const ConnectionSuccessfulEvent();
+
+  @override
+  List<Object?> get props => [];
+}
+
+@immutable
 class MovieNotFoundEvent extends Equatable {
   const MovieNotFoundEvent();
 
@@ -48,27 +56,27 @@ class ErrorParsingDataEvent extends Equatable {
 }
 
 @immutable
-class MovieResultsEvents extends Equatable {
+class MovieResultsEvent extends Equatable {
   final List<MovieSimpleSearchResponse> results;
-  const MovieResultsEvents(this.results);
+  const MovieResultsEvent(this.results);
 
   @override
   List<Object?> get props => [results];
 }
 
 @immutable
-class MovieFullResultEvents extends Equatable {
+class MovieFullResultEvent extends Equatable {
   final MovieSearchResponse result;
-  const MovieFullResultEvents(this.result);
+  const MovieFullResultEvent(this.result);
 
   @override
   List<Object?> get props => [result];
 }
 
 @immutable
-class UnableToFetchPosterEvents extends Equatable {
+class UnableToFetchPosterEvent extends Equatable {
   final String exceptionMessage;
-  const UnableToFetchPosterEvents(this.exceptionMessage);
+  const UnableToFetchPosterEvent(this.exceptionMessage);
 
   @override
   List<Object?> get props => [exceptionMessage];

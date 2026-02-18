@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:movie_browser/bloc/favorite_button/favorite_button_bloc.dart';
 import 'package:movie_browser/domain/data_structs/movie_search_response.dart';
+import 'package:movie_browser/utils/custom_injector.dart';
 import 'package:movie_browser/views/widgets/favorite_button.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:event_bus/event_bus.dart';
 
 class MovieDetailsWidget extends StatelessWidget {
   final MovieSearchResponse movie;
@@ -32,8 +36,16 @@ class MovieDetailsWidget extends StatelessWidget {
                   Image.network(
                     movie.posterURL,
                     fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) =>
-                        const Icon(Icons.movie, size: 120),
+                    loadingBuilder: (context, child, progress) {
+                      if (progress == null) return child;
+                      return const Center(
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      );
+                    },
+                    errorBuilder: (_, __, ___) => Container(
+                      color: Colors.white,
+                      child: const Icon(Icons.movie, size: 40),
+                    ),
                   ),
                   Container(
                     decoration: const BoxDecoration(
@@ -105,8 +117,13 @@ class MovieDetailsWidget extends StatelessWidget {
                   _buildInfoSection("Box Office", movie.boxOffice),
                   _buildInfoSection("Production", movie.production),
                   const SizedBox(height: 40),
-                  FavoriteButton(
-                    isFavorite: false,
+                  BlocProvider(
+                    create: (context) => FavoriteButtonBloc(
+                        CustomInjector.injector.get<EventBus>(),
+                        movie.isFavorite),
+                    child: FavoriteButton(
+                      movie: movie,
+                    ),
                   )
                 ],
               ),

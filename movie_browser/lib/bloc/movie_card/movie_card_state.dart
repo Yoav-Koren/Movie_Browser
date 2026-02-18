@@ -8,13 +8,3 @@ class MovieCardState extends Equatable {
 
 @immutable
 class MovieCardInitial extends MovieCardState {}
-
-@immutable
-class ShowMovieSearchResultState extends MovieCardState {
-  final MovieSearchResponse response;
-
-  ShowMovieSearchResultState(this.response);
-
-  @override
-  List<Object?> get props => [response];
-}
