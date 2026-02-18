@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:movie_browser/bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
+import 'package:movie_browser/bloc/localization/localization_bloc.dart';
 import 'package:movie_browser/consts/hive_enums/media_type.dart';
 import 'package:movie_browser/domain/data_structs/movie_ratings.dart';
 import 'package:movie_browser/domain/data_structs/movie_search_response.dart';
@@ -14,6 +15,8 @@ import 'package:movie_browser/domain/managers/http_manager.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auto_injector/auto_injector.dart';
 import 'package:event_bus/event_bus.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'l10n/app_localizations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +24,10 @@ Future<void> main() async {
   var injector = CustomInjector.injector;
   onStartRepositories(injector);
   hiveOnStart();
-  runApp(const MyApp());
+  runApp(BlocProvider(
+    create: (context) => LocalizationBloc(),
+    child: const MyApp(),
+  ));
 }
 
 Future<void> hiveOnStart() async {
@@ -40,12 +46,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      //TODO Remove Later
-      title: "Movie Browser",
-      home: SplashScreen(),
-      theme: ThemeData.dark(),
+    return BlocBuilder<LocalizationBloc, LocalizationState>(
+      builder: (context, state) {
+        return MaterialApp(
+          locale: state.locale,
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: const [
+            Locale('en'),
+            Locale('pl'),
+          ],
+          debugShowCheckedModeBanner: false,
+          title: 'Movie Browser',
+          home: SplashScreen(),
+          theme: ThemeData.dark(),
+        );
+      },
     );
   }
 }

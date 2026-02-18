@@ -14,7 +14,7 @@ part 'favorite_movie_list_view_state.dart';
 class FavoriteMovieListViewBloc
     extends Bloc<FavoriteMovieListViewEvent, FavoriteMovieListViewState> {
   final EventBus _eventBus;
-  late final StreamSubscription<MovieSearchResultFavoriteListUpdatedEvent>
+  late final StreamSubscription<MovieFavoriteListUpdatedEvent>
       _streamSubscriptionMovieSearchResultFavoriteListUpdatedEvent;
   FavoriteMovieListViewBloc(this._eventBus)
       : super(FavoriteMovieListViewInitial()) {
@@ -24,9 +24,8 @@ class FavoriteMovieListViewBloc
   }
 
   void _eventBusEventListening() {
-    _streamSubscriptionMovieSearchResultFavoriteListUpdatedEvent = _eventBus
-        .on<MovieSearchResultFavoriteListUpdatedEvent>()
-        .listen((event) {
+    _streamSubscriptionMovieSearchResultFavoriteListUpdatedEvent =
+        _eventBus.on<MovieFavoriteListUpdatedEvent>().listen((event) {
       var simpleList = <MovieSimpleSearchResponse>[];
       for (var movieFavorite in event.movieSearchResonspeList) {
         simpleList.add(MovieSimpleSearchResponse(

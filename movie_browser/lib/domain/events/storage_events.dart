@@ -55,9 +55,9 @@ class ClearSearchHistoryEvent extends Equatable {
 }
 
 @immutable
-class MovieSearchResultFavoriteListUpdatedEvent extends Equatable {
+class MovieFavoriteListUpdatedEvent extends Equatable {
   final List<MovieSearchResponse> movieSearchResonspeList;
-  const MovieSearchResultFavoriteListUpdatedEvent(this.movieSearchResonspeList);
+  const MovieFavoriteListUpdatedEvent(this.movieSearchResonspeList);
 
   @override
   List<Object?> get props => [movieSearchResonspeList];
@@ -73,8 +73,8 @@ class SearchHistoryListUpdatedEvent extends Equatable {
 }
 
 @immutable
-class MovieSearchResultFavoriteListRequestEvent extends Equatable {
-  const MovieSearchResultFavoriteListRequestEvent();
+class MovieFavoriteListRequestEvent extends Equatable {
+  const MovieFavoriteListRequestEvent();
 
   @override
   List<Object?> get props => [];

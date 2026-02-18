@@ -23,7 +23,7 @@ class FavoriteButton extends StatelessWidget {
       buildWhen: (previous, current) => current is FavoriteButtonInitial,
       builder: (context, state) {
         return Material(
-          color: Colors.blueGrey ?? Colors.transparent,
+          color: Colors.blueGrey,
           shape: RoundedRectangleBorder(
               borderRadius:
                   BorderRadiusGeometry.all(Radius.circular(size / 2))),
@@ -52,8 +52,8 @@ class FavoriteButton extends StatelessWidget {
                       state is FavoriteButtonInitial && state.isFavorite),
                   size: size,
                   color: state is FavoriteButtonInitial && state.isFavorite
-                      ? (Colors.red ?? Colors.redAccent)
-                      : (Colors.white ?? theme.iconTheme.color),
+                      ? (Colors.red)
+                      : (Colors.white),
                 ),
               ),
             ),

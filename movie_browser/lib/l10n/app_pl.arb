@@ -1,0 +1,31 @@
+{
+  "@@locale": "pl",
+
+  "appTitle": "Przeglądarka Filmów",
+
+  "tabSearch": "Szukaj",
+  "tabFavorites": "Ulubione",
+
+  "searchHint": "Szukaj...",
+
+  "searchHistoryTitle": "Historia wyszukiwania",
+  "clearHistory": "Wyczyść historię",
+  "noSearchHistory": "Brak historii wyszukiwania",
+
+  "noFavorites": "Brak ulubionych",
+
+  "noResults": "Brak wyników",
+
+  "imdb": "IMDb",
+  "metascore": "Metascore",
+  "plot": "Fabuła",
+  "director": "Reżyser",
+  "writers": "Scenariusz",
+  "actors": "Obsada",
+  "awards": "Nagrody",
+  "country": "Kraj",
+  "language": "Język",
+  "boxOffice": "Box Office",
+  "production": "Produkcja",
+  "notAvailable": "Brak danych"
+}

@@ -20,7 +20,7 @@ class BottomNavBarBloc extends Bloc<BottomNavBarEvent, BottomNavBarState> {
 
     on<NavigateToPageEvent>((event, emit) {
       if (event.routePage == PageRoutings.favoritePageIndex) {
-        _eventBus.fire(MovieSearchResultFavoriteListRequestEvent());
+        _eventBus.fire(MovieFavoriteListRequestEvent());
       }
       emit(BottomNavBarState(currentPage: event.routePage));
     });

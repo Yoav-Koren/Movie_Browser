@@ -53,10 +53,9 @@ class StorageRepository implements IStorageRepository {
           _searchHistoryHiveManager.fetchAllData() as List<String>));
     });
 
-    _eventBus.on<MovieSearchResultFavoriteListRequestEvent>().listen((event) {
-      _eventBus.fire(MovieSearchResultFavoriteListUpdatedEvent(
-          _movieResponseHiveManager.fetchAllData()
-              as List<MovieSearchResponse>));
+    _eventBus.on<MovieFavoriteListRequestEvent>().listen((event) {
+      _eventBus.fire(MovieFavoriteListUpdatedEvent(_movieResponseHiveManager
+          .fetchAllData() as List<MovieSearchResponse>));
     });
 
     _eventBus.on<ClearSearchHistoryEvent>().listen((event) async {
@@ -81,16 +80,14 @@ class StorageRepository implements IStorageRepository {
 
     _eventBus.on<SaveToFavoritesEvent>().listen((event) {
       _movieResponseHiveManager.addData(event.search.title, event.search);
-      _eventBus.fire(MovieSearchResultFavoriteListUpdatedEvent(
-          _movieResponseHiveManager.fetchAllData()
-              as List<MovieSearchResponse>));
+      _eventBus.fire(MovieFavoriteListUpdatedEvent(_movieResponseHiveManager
+          .fetchAllData() as List<MovieSearchResponse>));
     });
 
     _eventBus.on<DeleteFromFavoritesEvent>().listen((event) async {
       if (await _movieResponseHiveManager.deleteData(event.title)) {
-        _eventBus.fire(MovieSearchResultFavoriteListUpdatedEvent(
-            _movieResponseHiveManager.fetchAllData()
-                as List<MovieSearchResponse>));
+        _eventBus.fire(MovieFavoriteListUpdatedEvent(_movieResponseHiveManager
+            .fetchAllData() as List<MovieSearchResponse>));
       }
     });
   }

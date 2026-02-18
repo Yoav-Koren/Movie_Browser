@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_browser/bloc/search_bar/search_bar_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_browser/l10n/app_localizations.dart';
 import 'package:movie_browser/utils/custom_injector.dart';
 import 'package:event_bus/event_bus.dart';
 
@@ -36,9 +37,9 @@ class CustomSearchBar extends StatelessWidget {
                                     .add(SearchTermUpdated(searchTerm: data));
                               },
                               style: const TextStyle(color: Colors.white),
-                              decoration: const InputDecoration(
-                                //TODO change later
-                                hintText: 'Search movies...',
+                              decoration: InputDecoration(
+                                hintText:
+                                    AppLocalizations.of(context)!.searchHint,
                                 hintStyle: TextStyle(color: Colors.grey),
                                 border: InputBorder.none,
                                 contentPadding: EdgeInsets.symmetric(

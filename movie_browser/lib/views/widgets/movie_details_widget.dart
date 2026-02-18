@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_browser/bloc/favorite_button/favorite_button_bloc.dart';
 import 'package:movie_browser/domain/data_structs/movie_search_response.dart';
+import 'package:movie_browser/l10n/app_localizations.dart';
 import 'package:movie_browser/utils/custom_injector.dart';
 import 'package:movie_browser/views/widgets/favorite_button.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -75,13 +76,13 @@ class MovieDetailsWidget extends StatelessWidget {
                   Row(
                     children: [
                       _buildRatingBadge(
-                        label: "IMDb",
+                        label: AppLocalizations.of(context)!.imdb,
                         value: movie.imdbRating.toString(),
                         color: Colors.amber,
                       ),
                       const SizedBox(width: 12),
                       _buildRatingBadge(
-                        label: "Metascore",
+                        label: AppLocalizations.of(context)!.metascore,
                         value: movie.metascore.toString(),
                         color: Colors.green,
                       ),
@@ -101,21 +102,29 @@ class MovieDetailsWidget extends StatelessWidget {
                   ),
                   const SizedBox(height: 24),
                   Text(
-                    "Plot",
+                    AppLocalizations.of(context)!.plot,
                     style: theme.textTheme.titleLarge,
                   ),
                   const SizedBox(height: 8),
                   Text(movie.plot),
                   const SizedBox(height: 24),
-                  _buildInfoSection("Director", movie.director),
-                  _buildInfoSection("Writers", movie.writers),
-                  _buildInfoSection("Actors", movie.actors),
+                  _buildInfoSection(AppLocalizations.of(context)!.director,
+                      movie.director, context),
+                  _buildInfoSection(AppLocalizations.of(context)!.writers,
+                      movie.writers, context),
+                  _buildInfoSection(AppLocalizations.of(context)!.actors,
+                      movie.actors, context),
                   const SizedBox(height: 24),
-                  _buildInfoSection("Awards", movie.awards),
-                  _buildInfoSection("Country", movie.country),
-                  _buildInfoSection("Language", movie.language),
-                  _buildInfoSection("Box Office", movie.boxOffice),
-                  _buildInfoSection("Production", movie.production),
+                  _buildInfoSection(AppLocalizations.of(context)!.awards,
+                      movie.awards, context),
+                  _buildInfoSection(AppLocalizations.of(context)!.country,
+                      movie.country, context),
+                  _buildInfoSection(AppLocalizations.of(context)!.language,
+                      movie.language, context),
+                  _buildInfoSection(AppLocalizations.of(context)!.boxOffice,
+                      movie.boxOffice, context),
+                  _buildInfoSection(AppLocalizations.of(context)!.production,
+                      movie.production, context),
                   const SizedBox(height: 40),
                   BlocProvider(
                     create: (context) => FavoriteButtonBloc(
@@ -158,8 +167,10 @@ class MovieDetailsWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoSection(String title, String value) {
-    if (value.isEmpty || value == "N/A") return const SizedBox();
+  Widget _buildInfoSection(String title, String value, BuildContext context) {
+    if (value.isEmpty || value == AppLocalizations.of(context)!.notAvailable) {
+      return const SizedBox();
+    }
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),

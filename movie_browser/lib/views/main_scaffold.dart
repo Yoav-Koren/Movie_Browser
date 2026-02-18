@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:movie_browser/bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_browser/bloc/favorite_movie_list_view.dart/favorite_movie_list_view_bloc.dart';
+import 'package:movie_browser/bloc/favorite_movie_list_view/favorite_movie_list_view_bloc.dart';
+import 'package:movie_browser/bloc/localization/localization_bloc.dart';
 import 'package:movie_browser/bloc/pop_up/pop_up_bloc.dart';
 import 'package:movie_browser/bloc/search_movie_list_view/search_movie_list_view_bloc.dart';
 import 'package:movie_browser/consts/const_enums.dart';
+import 'package:movie_browser/l10n/app_localizations.dart';
 import 'package:movie_browser/utils/custom_injector.dart';
 import 'package:movie_browser/views/pages/favorites_page.dart';
 import 'package:movie_browser/views/pages/search_page.dart';
@@ -33,11 +35,18 @@ class MainScaffold extends StatelessWidget {
           return Scaffold(
             backgroundColor: Colors.grey[900],
             appBar: AppBar(
-              //TODO change later
               title: Text(state.currentPage == PageRoutings.searchPageIndex
-                  ? "Search"
-                  : "Favorites"),
+                  ? AppLocalizations.of(context)!.tabSearch
+                  : AppLocalizations.of(context)!.tabFavorites),
               backgroundColor: Colors.black,
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.language),
+                  onPressed: () {
+                    context.read<LocalizationBloc>().add(ToggleLocale());
+                  },
+                ),
+              ],
             ),
             body: IndexedStack(
               index: state.currentPage.index,

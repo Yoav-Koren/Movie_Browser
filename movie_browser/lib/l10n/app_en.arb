@@ -1,0 +1,31 @@
+{
+  "@@locale": "en",
+
+  "appTitle": "Movie Browser",
+
+  "tabSearch": "Search",
+  "tabFavorites": "Favorites",
+
+  "searchHint": "Search...",
+
+  "searchHistoryTitle": "Search History",
+  "clearHistory": "Clear History",
+  "noSearchHistory": "No search history",
+
+  "noFavorites": "No Favorites",
+
+  "noResults": "No results",
+
+  "imdb": "IMDb",
+  "metascore": "Metascore",
+  "plot": "Plot",
+  "director": "Director",
+  "writers": "Writers",
+  "actors": "Actors",
+  "awards": "Awards",
+  "country": "Country",
+  "language": "Language",
+  "boxOffice": "Box Office",
+  "production": "Production",
+  "notAvailable": "N/A"
+}

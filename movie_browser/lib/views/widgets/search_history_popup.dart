@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_browser/bloc/search_history/search_history_bloc.dart';
+import 'package:movie_browser/l10n/app_localizations.dart'
+    show AppLocalizations;
 
 class SearchHistoryDialog extends StatelessWidget {
   const SearchHistoryDialog({super.key});
@@ -14,8 +16,8 @@ class SearchHistoryDialog extends StatelessWidget {
         width: 350,
         child: Column(
           children: [
-            const Text(
-              "Search History",
+            Text(
+              AppLocalizations.of(context)!.searchHistoryTitle,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
@@ -23,8 +25,9 @@ class SearchHistoryDialog extends StatelessWidget {
               child: BlocBuilder<SearchHistoryBloc, SearchHistoryState>(
                 builder: (context, state) {
                   if (state.searches.isEmpty) {
-                    return const Center(
-                      child: Text("No search history"),
+                    return Center(
+                      child:
+                          Text(AppLocalizations.of(context)!.noSearchHistory),
                     );
                   }
                   return ListView.builder(
@@ -57,8 +60,8 @@ class SearchHistoryDialog extends StatelessWidget {
                 onPressed: () {
                   context.read<SearchHistoryBloc>().add(ClearHistoryEvent());
                 },
-                child: const Text(
-                  "Clear All",
+                child: Text(
+                  AppLocalizations.of(context)!.clearHistory,
                   style: TextStyle(color: Colors.red),
                 ),
               ),

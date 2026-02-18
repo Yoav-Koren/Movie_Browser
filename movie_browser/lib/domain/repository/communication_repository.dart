@@ -24,7 +24,7 @@ class CommunicationRepository implements ICommunicationRepository {
   CommunicationRepository(this._autoInjector) {
     _httpManager = _autoInjector.get<IHttpManager>() as HttpManager;
     _eventBus = _autoInjector.get<EventBus>();
-    _eventBus.fire(MovieSearchResultFavoriteListRequestEvent());
+    _eventBus.fire(MovieFavoriteListRequestEvent());
     _listenToEventBusEvents();
   }
 
@@ -144,7 +144,7 @@ class CommunicationRepository implements ICommunicationRepository {
   }
 
   void _listenToEventBusEvents() {
-    _eventBus.on<MovieSearchResultFavoriteListUpdatedEvent>().listen((event) {
+    _eventBus.on<MovieFavoriteListUpdatedEvent>().listen((event) {
       _searchResponseFavoriteList = event.movieSearchResonspeList;
     });
 

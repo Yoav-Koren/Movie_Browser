@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movie_browser/bloc/favorite_movie_list_view.dart/favorite_movie_list_view_bloc.dart';
+import 'package:movie_browser/bloc/favorite_movie_list_view/favorite_movie_list_view_bloc.dart';
 import 'package:movie_browser/consts/const_nums.dart';
+import 'package:movie_browser/l10n/app_localizations.dart';
 import 'package:movie_browser/views/pages/search_page.dart';
 import 'package:movie_browser/views/widgets/custom_bottom_navigation_bar.dart';
 import 'package:movie_browser/views/widgets/movie_list_view.dart';
@@ -26,7 +27,9 @@ class FavoritesPage extends StatelessWidget {
                       ? MovieListView(
                           movieList: state.results,
                         )
-                      : const Center(child: Text('No Favorites')),
+                      : Center(
+                          child:
+                              Text(AppLocalizations.of(context)!.noFavorites)),
                 );
               },
             ),

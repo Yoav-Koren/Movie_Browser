@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_browser/bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
 import 'package:movie_browser/consts/const_enums.dart';
+import 'package:movie_browser/l10n/app_localizations.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   const CustomBottomNavigationBar({super.key});
@@ -22,16 +23,14 @@ class CustomBottomNavigationBar extends StatelessWidget {
                 .read<BottomNavBarBloc>()
                 .add(NavigateToPageEvent(pageIndex));
           },
-          items: const [
+          items: [
             BottomNavigationBarItem(
               icon: Icon(Icons.search),
-              //TODO change later
-              label: 'Search',
+              label: AppLocalizations.of(context)!.searchHint,
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.favorite),
-              //TODO change later
-              label: 'Favorites',
+              label: AppLocalizations.of(context)!.tabFavorites,
             ),
           ],
         );

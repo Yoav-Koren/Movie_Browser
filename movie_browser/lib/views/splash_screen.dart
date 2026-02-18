@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_browser/bloc/splash_screen/splash_screen_bloc.dart';
+import 'package:movie_browser/l10n/app_localizations.dart';
 import 'package:movie_browser/views/pages/search_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,24 +21,23 @@ class SplashScreen extends StatelessWidget {
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Icon(
+                children: [
+                  const Icon(
                     Icons.movie,
                     color: Colors.redAccent,
                     size: 100,
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Text(
-                    //TODO Change later
-                    'Movie Browser',
-                    style: TextStyle(
+                    AppLocalizations.of(context)!.appTitle,
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 15),
-                  CircularProgressIndicator(
+                  const SizedBox(height: 15),
+                  const CircularProgressIndicator(
                     color: Colors.redAccent,
                   ),
                 ],
