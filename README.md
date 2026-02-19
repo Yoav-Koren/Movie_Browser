@@ -27,6 +27,7 @@ Intl – Internationalization support
 Known Limitations and Future Improvements
 Due to the one-week delivery timeline, several enhancements were not completed:
 
+
 Comprehensive runtime and network error handling
 Full accessibility support
 Expanded BLoC unit test coverage
