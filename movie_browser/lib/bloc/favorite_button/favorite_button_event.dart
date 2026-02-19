@@ -8,12 +8,12 @@ abstract class FavoriteButtonEvent extends Equatable {
 
 @immutable
 class MovieFavoriteButtonClickedEvent extends FavoriteButtonEvent {
-  final MovieSearchResponse movieSearchResponse;
+  final MovieData movieData;
 
-  MovieFavoriteButtonClickedEvent(this.movieSearchResponse);
+  MovieFavoriteButtonClickedEvent(this.movieData);
 
   @override
-  List<Object?> get props => [movieSearchResponse];
+  List<Object?> get props => [movieData];
 }
 
 @immutable

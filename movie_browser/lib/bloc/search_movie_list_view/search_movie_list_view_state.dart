@@ -14,7 +14,7 @@ class SearchResultsListViewInitial extends SearchMovieListViewState {
 
 @immutable
 class MovieShowState extends SearchMovieListViewState {
-  final List<MovieSimpleSearchResponse> results;
+  final List<MovieDataSimple> results;
   MovieShowState(this.results);
   @override
   List<Object?> get props => [results];

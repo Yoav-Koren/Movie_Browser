@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:event_bus/event_bus.dart';
+import 'package:movie_browser/consts/const_nums.dart';
 import 'package:movie_browser/domain/events/communication_events.dart';
 import 'package:movie_browser/domain/events/ui_events.dart';
 import 'package:equatable/equatable.dart';
@@ -11,7 +12,7 @@ part 'pagination_control_state.dart';
 
 class PaginationControlBloc
     extends Bloc<PaginationControlEvent, PaginationControlState> {
-  int _page = 1;
+  int _page = ConstNumbers.startingPage;
   String _searchTerm = "";
   final EventBus _eventBus;
   late final StreamSubscription<NewSearchTermEvent>
@@ -25,8 +26,8 @@ class PaginationControlBloc
 
     on<PaginationBackPageEvent>((event, emit) {
       _page = _page - 1;
-      if (_page < 1) {
-        _page = 1;
+      if (_page < ConstNumbers.startingPage) {
+        _page = ConstNumbers.startingPage;
       }
       _eventBus.fire(SearchByWordEvent(search: _searchTerm, page: _page));
     });
@@ -36,7 +37,7 @@ class PaginationControlBloc
   void _eventBusEventListening() {
     _streamSubscriptionNewSearchTermEvent =
         _eventBus.on<NewSearchTermEvent>().listen((event) {
-      _page = 1;
+      _page = ConstNumbers.startingPage;
       _searchTerm = event.search;
     });
   }

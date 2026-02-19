@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_browser/bloc/favorite_button/favorite_button_bloc.dart';
 import 'package:movie_browser/bloc/movie_card/movie_card_bloc.dart';
-import 'package:movie_browser/domain/data_structs/movie_search_response.dart';
+import 'package:movie_browser/domain/data_structs/movie_data.dart';
 import 'package:movie_browser/domain/events/storage_events.dart';
 
 class FavoriteButton extends StatelessWidget {
-  final MovieSearchResponse movie;
+  final MovieData movie;
   final double size;
 
   const FavoriteButton({

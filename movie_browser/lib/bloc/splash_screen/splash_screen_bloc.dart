@@ -13,7 +13,6 @@ class SplashScreenBloc extends Bloc<SplashScreenEvent, SplashScreenState> {
     on<SplashScreenEvent>((event, emit) {});
 
     on<SplashScreenStartUpEvent>((event, emit) {
-      //TODO ADD Loading data here like saved favs and search results
       Future.delayed(const Duration(seconds: 3), () {
         Navigator.pushReplacement(
           event.context,

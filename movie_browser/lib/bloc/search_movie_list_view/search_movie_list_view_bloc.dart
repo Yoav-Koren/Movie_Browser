@@ -4,7 +4,8 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:event_bus/event_bus.dart';
 import 'package:equatable/equatable.dart';
-import 'package:movie_browser/domain/data_structs/movie_simple_search_response.dart';
+import 'package:movie_browser/consts/const_strings.dart';
+import 'package:movie_browser/domain/data_structs/movie_data_simple.dart';
 import 'package:movie_browser/domain/events/communication_events.dart';
 import 'package:movie_browser/domain/events/storage_events.dart';
 
@@ -36,14 +37,13 @@ class SearchMovieListViewBloc
 
     _streamSubscriptionMovieNotFoundEvent =
         _eventBus.on<MovieNotFoundEvent>().listen((event) {
-      //TODO FIX LATER
-      emit(SearchResultsErrorState("No Movie Found"));
+      emit(SearchResultsErrorState(ConstString.apiMovieNotFoundResponse));
     });
 
     _streamSubscriptionConnectionFailedEvent =
         _eventBus.on<ConnectionFailedEvent>().listen((event) {
-      //TODO FIX LATER
-      emit(SearchResultsErrorState(event.message ?? "Connection Error!"));
+      emit(SearchResultsErrorState(
+          event.message ?? ConstString.connectionErrorMessageDefault));
     });
   }
 

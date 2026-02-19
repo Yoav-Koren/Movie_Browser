@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
+import 'package:movie_browser/consts/const_nums.dart';
 import 'package:movie_browser/consts/const_strings.dart';
 import 'package:movie_browser/domain/events/communication_events.dart';
 import 'package:movie_browser/domain/interfaces/interface_http_manager.dart';
@@ -38,8 +39,10 @@ class HttpManager implements IHttpManager {
       var response = await _dio.get(
           "$url$searchHeader$searchResult$pageHeader${pageNumber.toString()}${ConstString.apiKeyHeader}$apiKey",
           options: Options(
-              connectTimeout: Duration(seconds: 5),
-              receiveTimeout: Duration(seconds: 5)));
+              connectTimeout:
+                  Duration(seconds: ConstNumbers.connectionTimeOutSeconds),
+              receiveTimeout:
+                  Duration(seconds: ConstNumbers.connectionTimeOutSeconds)));
       return response;
     } on DioException catch (e) {
       return e;

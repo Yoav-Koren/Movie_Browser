@@ -3,9 +3,10 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:movie_browser/bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
 import 'package:movie_browser/bloc/localization/localization_bloc.dart';
+import 'package:movie_browser/consts/const_strings.dart';
 import 'package:movie_browser/consts/hive_enums/media_type.dart';
 import 'package:movie_browser/domain/data_structs/movie_ratings.dart';
-import 'package:movie_browser/domain/data_structs/movie_search_response.dart';
+import 'package:movie_browser/domain/data_structs/movie_data.dart';
 import 'package:movie_browser/domain/interfaces/interface_http_manager.dart';
 import 'package:movie_browser/domain/repository/communication_repository.dart';
 import 'package:movie_browser/domain/repository/storage_repository.dart';
@@ -31,7 +32,7 @@ Future<void> main() async {
 }
 
 Future<void> hiveOnStart() async {
-  Hive.registerAdapter(MovieSearchResponseAdapter());
+  Hive.registerAdapter(MovieDataAdapter());
   Hive.registerAdapter(MovieRatingsAdapter());
   Hive.registerAdapter(MediaTypeAdapter());
 }
@@ -57,8 +58,8 @@ class MyApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: const [
-            Locale('en'),
-            Locale('pl'),
+            Locale(ConstString.englishLocale),
+            Locale(ConstString.polishLocale),
           ],
           debugShowCheckedModeBanner: false,
           title: 'Movie Browser',

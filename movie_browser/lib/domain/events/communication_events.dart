@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_browser/domain/data_structs/movie_search_response.dart';
-import 'package:movie_browser/domain/data_structs/movie_simple_search_response.dart';
+import 'package:movie_browser/domain/data_structs/movie_data.dart';
+import 'package:movie_browser/domain/data_structs/movie_data_simple.dart';
 
 @immutable
 class SearchByWordEvent extends Equatable {
@@ -57,7 +57,7 @@ class ErrorParsingDataEvent extends Equatable {
 
 @immutable
 class MovieResultsEvent extends Equatable {
-  final List<MovieSimpleSearchResponse> results;
+  final List<MovieDataSimple> results;
   const MovieResultsEvent(this.results);
 
   @override
@@ -66,7 +66,7 @@ class MovieResultsEvent extends Equatable {
 
 @immutable
 class MovieFullResultEvent extends Equatable {
-  final MovieSearchResponse result;
+  final MovieData result;
   const MovieFullResultEvent(this.result);
 
   @override

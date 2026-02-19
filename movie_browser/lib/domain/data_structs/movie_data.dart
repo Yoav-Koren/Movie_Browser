@@ -6,10 +6,10 @@ import 'package:movie_browser/consts/const_enums.dart';
 import 'package:movie_browser/consts/hive_enums/media_type.dart';
 import 'package:movie_browser/domain/data_structs/movie_ratings.dart';
 
-part 'movie_search_response.g.dart';
+part 'movie_data.g.dart';
 
 @HiveType(typeId: 0)
-class MovieSearchResponse {
+class MovieData {
   @HiveField(0)
   final String title;
 
@@ -85,7 +85,7 @@ class MovieSearchResponse {
   @HiveField(24)
   bool isFavorite;
 
-  MovieSearchResponse({
+  MovieData({
     required this.title,
     required this.year,
     required this.releaseDate,

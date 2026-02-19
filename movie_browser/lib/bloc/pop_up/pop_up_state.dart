@@ -10,7 +10,7 @@ class PopUpInitial extends PopUpState {
 
 @immutable
 class ShowMovieSearchResultState extends PopUpState {
-  final MovieSearchResponse response;
+  final MovieData response;
 
   ShowMovieSearchResultState(this.response);
 

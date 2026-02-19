@@ -14,7 +14,7 @@ class FavoriteMovieListViewInitial extends FavoriteMovieListViewState {
 
 @immutable
 class MovieShowState extends FavoriteMovieListViewState {
-  final List<MovieSimpleSearchResponse> results;
+  final List<MovieDataSimple> results;
   MovieShowState(this.results);
   @override
   List<Object?> get props => [results];

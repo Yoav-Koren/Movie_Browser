@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_browser/bloc/favorite_button/favorite_button_bloc.dart';
-import 'package:movie_browser/domain/data_structs/movie_search_response.dart';
+import 'package:movie_browser/domain/data_structs/movie_data.dart';
 import 'package:movie_browser/l10n/app_localizations.dart';
 import 'package:movie_browser/utils/custom_injector.dart';
 import 'package:movie_browser/views/widgets/favorite_button.dart';
@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:event_bus/event_bus.dart';
 
 class MovieDetailsWidget extends StatelessWidget {
-  final MovieSearchResponse movie;
+  final MovieData movie;
 
   const MovieDetailsWidget({
     Key? key,

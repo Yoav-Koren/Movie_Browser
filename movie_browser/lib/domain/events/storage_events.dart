@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
-import 'package:movie_browser/domain/data_structs/movie_search_response.dart';
+import 'package:movie_browser/domain/data_structs/movie_data.dart';
 
 @immutable
 class SaveToFavoritesEvent extends Equatable {
-  final MovieSearchResponse search;
+  final MovieData search;
   const SaveToFavoritesEvent(this.search);
 
   @override
@@ -56,7 +56,7 @@ class ClearSearchHistoryEvent extends Equatable {
 
 @immutable
 class MovieFavoriteListUpdatedEvent extends Equatable {
-  final List<MovieSearchResponse> movieSearchResonspeList;
+  final List<MovieData> movieSearchResonspeList;
   const MovieFavoriteListUpdatedEvent(this.movieSearchResonspeList);
 
   @override

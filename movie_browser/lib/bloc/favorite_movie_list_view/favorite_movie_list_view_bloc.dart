@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:event_bus/event_bus.dart';
 import 'package:equatable/equatable.dart';
-import 'package:movie_browser/domain/data_structs/movie_simple_search_response.dart';
+import 'package:movie_browser/domain/data_structs/movie_data_simple.dart';
 import 'package:movie_browser/domain/events/communication_events.dart';
 import 'package:movie_browser/domain/events/storage_events.dart';
 
@@ -15,29 +15,32 @@ class FavoriteMovieListViewBloc
     extends Bloc<FavoriteMovieListViewEvent, FavoriteMovieListViewState> {
   final EventBus _eventBus;
   late final StreamSubscription<MovieFavoriteListUpdatedEvent>
-      _streamSubscriptionMovieSearchResultFavoriteListUpdatedEvent;
+  _streamSubscriptionMovieSearchResultFavoriteListUpdatedEvent;
   FavoriteMovieListViewBloc(this._eventBus)
-      : super(FavoriteMovieListViewInitial()) {
+    : super(FavoriteMovieListViewInitial()) {
     on<FavoriteMovieListViewEvent>((event, emit) {});
 
     _eventBusEventListening();
   }
 
   void _eventBusEventListening() {
-    _streamSubscriptionMovieSearchResultFavoriteListUpdatedEvent =
-        _eventBus.on<MovieFavoriteListUpdatedEvent>().listen((event) {
-      var simpleList = <MovieSimpleSearchResponse>[];
-      for (var movieFavorite in event.movieSearchResonspeList) {
-        simpleList.add(MovieSimpleSearchResponse(
-          title: movieFavorite.title,
-          year: movieFavorite.year,
-          imdbID: movieFavorite.imdbID,
-          mediaType: movieFavorite.type,
-          posterURL: movieFavorite.posterURL,
-        ));
-      }
-      emit(MovieShowState(simpleList));
-    });
+    _streamSubscriptionMovieSearchResultFavoriteListUpdatedEvent = _eventBus
+        .on<MovieFavoriteListUpdatedEvent>()
+        .listen((event) {
+          var simpleList = <MovieDataSimple>[];
+          for (var movieFavorite in event.movieSearchResonspeList) {
+            simpleList.add(
+              MovieDataSimple(
+                title: movieFavorite.title,
+                year: movieFavorite.year,
+                imdbID: movieFavorite.imdbID,
+                mediaType: movieFavorite.type,
+                posterURL: movieFavorite.posterURL,
+              ),
+            );
+          }
+          emit(MovieShowState(simpleList));
+        });
   }
 
   @override
