@@ -3,9 +3,7 @@ import 'dart:typed_data';
 import 'package:dio/dio.dart';
 import 'package:movie_browser/consts/const_nums.dart';
 import 'package:movie_browser/consts/const_strings.dart';
-import 'package:movie_browser/domain/events/communication_events.dart';
 import 'package:movie_browser/domain/interfaces/interface_http_manager.dart';
-import 'package:event_bus/event_bus.dart';
 
 class HttpManager implements IHttpManager {
   final Dio _dio = Dio();

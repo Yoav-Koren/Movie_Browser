@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_visible_for_testing_member
+
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
@@ -7,7 +9,6 @@ import 'package:equatable/equatable.dart';
 import 'package:movie_browser/consts/const_strings.dart';
 import 'package:movie_browser/domain/data_structs/movie_data_simple.dart';
 import 'package:movie_browser/domain/events/communication_events.dart';
-import 'package:movie_browser/domain/events/storage_events.dart';
 
 part 'search_movie_list_view_event.dart';
 part 'search_movie_list_view_state.dart';

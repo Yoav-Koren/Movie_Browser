@@ -49,5 +49,5 @@ class ConstString {
   static const String connectionMessageUnknownErrorMessage = "UNKNOWN ERROR";
 
   //! TODO THIS IS BAD PRACTICE THAT COULD GET YOU HACKED DONT DO REMOVE LATER BEFORE SUBMITTING
-  static const String apiKey = "db392504";
+  static const String apiKey = "";
 }

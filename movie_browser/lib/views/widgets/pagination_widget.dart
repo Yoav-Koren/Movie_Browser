@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_browser/bloc/pagination_control/pagination_control_bloc.dart';
-import 'package:movie_browser/utils/custom_injector.dart';
 
 class PaginationWidget extends StatelessWidget {
   const PaginationWidget({super.key});

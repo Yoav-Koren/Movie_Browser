@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_browser/bloc/movie_card/movie_card_bloc.dart';
 import 'package:movie_browser/domain/data_structs/movie_data_simple.dart';
-import 'package:movie_browser/utils/custom_injector.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:event_bus/event_bus.dart';
-import 'package:movie_browser/views/widgets/movie_details_widget.dart';
 
 class SimpleMovieCard extends StatelessWidget {
   final MovieDataSimple movie;

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_browser/bloc/favorite_button/favorite_button_bloc.dart';
-import 'package:movie_browser/bloc/movie_card/movie_card_bloc.dart';
 import 'package:movie_browser/domain/data_structs/movie_data.dart';
-import 'package:movie_browser/domain/events/storage_events.dart';
 
 class FavoriteButton extends StatelessWidget {
   final MovieData movie;
@@ -17,8 +15,6 @@ class FavoriteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return BlocBuilder<FavoriteButtonBloc, FavoriteButtonState>(
       buildWhen: (previous, current) => current is FavoriteButtonInitial,
       builder: (context, state) {

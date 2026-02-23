@@ -1,6 +1,4 @@
-import 'dart:typed_data';
 
-import 'package:flutter/material.dart';
 import 'package:movie_browser/consts/const_nums.dart';
 import 'package:movie_browser/consts/const_strings.dart';
 import 'package:movie_browser/consts/hive_enums/media_type.dart';
@@ -14,7 +12,6 @@ import 'package:auto_injector/auto_injector.dart';
 import 'package:movie_browser/domain/interfaces/interface_http_manager.dart';
 import 'package:movie_browser/domain/managers/http_manager.dart';
 import 'package:event_bus/event_bus.dart';
-import 'package:movie_browser/consts/const_enums.dart';
 import 'package:dio/dio.dart';
 
 class CommunicationRepository implements ICommunicationRepository {

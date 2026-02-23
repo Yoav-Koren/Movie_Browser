@@ -1,8 +1,5 @@
-import 'dart:typed_data';
 
-import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:movie_browser/consts/const_enums.dart';
 import 'package:movie_browser/consts/hive_enums/media_type.dart';
 import 'package:movie_browser/domain/data_structs/movie_ratings.dart';
 

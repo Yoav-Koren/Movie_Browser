@@ -1,10 +1,10 @@
+// ignore_for_file: invalid_use_of_visible_for_testing_member
+
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 import 'package:event_bus/event_bus.dart';
 import 'package:equatable/equatable.dart';
 import 'package:movie_browser/domain/data_structs/movie_data.dart';

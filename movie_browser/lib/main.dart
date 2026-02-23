@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:movie_browser/bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
 import 'package:movie_browser/bloc/localization/localization_bloc.dart';
 import 'package:movie_browser/consts/const_strings.dart';
 import 'package:movie_browser/consts/hive_enums/media_type.dart';
 import 'package:movie_browser/domain/data_structs/movie_ratings.dart';
 import 'package:movie_browser/domain/data_structs/movie_data.dart';
-import 'package:movie_browser/domain/interfaces/interface_http_manager.dart';
 import 'package:movie_browser/domain/repository/communication_repository.dart';
 import 'package:movie_browser/domain/repository/storage_repository.dart';
 import 'package:movie_browser/utils/custom_injector.dart';
 import 'views/splash_screen.dart';
-import 'package:movie_browser/domain/managers/http_manager.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auto_injector/auto_injector.dart';
-import 'package:event_bus/event_bus.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'l10n/app_localizations.dart';
 

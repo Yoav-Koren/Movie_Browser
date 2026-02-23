@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 
 abstract class IHttpManager {
   Future<dynamic> getRequest(String url,

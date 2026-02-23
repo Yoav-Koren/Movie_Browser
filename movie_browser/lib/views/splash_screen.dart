@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_browser/bloc/splash_screen/splash_screen_bloc.dart';
 import 'package:movie_browser/l10n/app_localizations.dart';
-import 'package:movie_browser/views/pages/search_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplashScreen extends StatelessWidget {
