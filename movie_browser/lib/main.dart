@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
             Locale(ConstString.polishLocale),
           ],
           debugShowCheckedModeBanner: false,
-          title: 'Movie Browser',
+          title: ConstString.projectTitle,
           home: SplashScreen(),
           theme: ThemeData.dark(),
         );

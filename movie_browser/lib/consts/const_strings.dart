@@ -1,5 +1,6 @@
 class ConstString {
   static const String apiURL = "https://www.omdbapi.com";
+  static const String projectTitle = 'Movie Browser';
   static const String apiSearchByTitleHeader = "/?t=";
   static const String apiSearchByWordHeader = "/?s=";
   static const String pageHeader = "&page=";
